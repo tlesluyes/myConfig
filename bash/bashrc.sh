@@ -154,6 +154,37 @@ function extract {
   fi
 }
 
+# This function transfers a file/folder from a location ($1) to another ($2) using a double rsync (it checks md5 and removes source).
+function transfer {
+    if [[ -z $1 && -z $2 ]]; then echo "Usage: transfer <source> <destination>" && return 99; fi
+    if [[ ! -e $1 ]]; then echo "\$1 ("$1") must exist" && return 99; fi
+    if [[ ! -e $2 ]]; then echo "\$2 ("$2") must exist" && return 99; fi
+    if [[ -e $1/$2 ]]; then echo "\$1/\$2 ($1/$2) must not exist" && return 99; fi
+
+    DEST_TYPE=$(df -T $2 | awk 'NR==2' | sed -r 's/ +/ /g' | cut -f2 -d' ')
+    if [[ "$DEST_TYPE" =~ ^(cifs|smb)$ ]]; then
+        echo "# This is cifs|smb #"
+        ARGS="rlDzv" # Do not preserve permissions, time, groups and owner (-ptgo)
+    else
+        ARGS="azv"
+    fi
+
+    echo "############################"
+    echo "##### Initial transfer #####"
+    echo "############################"
+    rsync -$ARGS $1 $2 || return 1
+
+    echo "###########################"
+    echo "##### Second transfer #####"
+    echo "###########################"
+    rsync --remove-source-files -c$ARGS $1 $2 || return 2
+    if [[ -d $1 ]]; then find $1 -type d -empty -delete || return 3; fi
+
+    echo "#################"
+    echo "##### Done. #####"
+    echo "#################"
+}
+
 # Ignore case when using tab to autocomplete path
 bind 'set completion-ignore-case on'
 # Show auto-completion list automatically, without double tab
