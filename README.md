@@ -12,3 +12,11 @@ It modifies the PS1 variable, sets aliases, configures the auto-completion and d
   - `transfer $1 $2`: transfer a file/folder from a location ($1) to another ($2) using a double rsync (it checks md5 and removes source).
 
 **Installation**: add `source $somePath/myConfig/bash/bashrc.sh` at the end of your `~/.bashrc`.
+
+### `htoprc`
+
+Custom information using the `htop` command.
+  - See [`htoprc_v3`](bash/htoprc_v3) for htop version 3+
+  - See [`htoprc_v3.2`](bash/htoprc_v3.2) for htop version 3.2+
+
+**Installation**: replace `~/.config/htop/htoprc`.
