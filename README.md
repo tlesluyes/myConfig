@@ -20,3 +20,11 @@ Custom information using the `htop` command.
   - See [`htoprc_v3.2`](bash/htoprc_v3.2) for htop version 3.2+
 
 **Installation**: replace `~/.config/htop/htoprc`.
+
+## R
+
+### [`.lintr`](R/lintr)
+
+Configuration file for the `lintr` package ().
+
+**Installation**: `ln -s $somePath/myConfig/R/lintr ~/.lintr`.
