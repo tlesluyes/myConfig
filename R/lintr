@@ -7,4 +7,5 @@ linters: linters_with_defaults(
   commented_code_linter=NULL, # Check that there is no commented code outside roxygen blocks.
   seq_linter=NULL, # This linter checks for 1:length(...), etc.
   quotes_linter(delimiter=c("\"", "'")), # Check that the desired quote delimiter is used for string constants
-  brace_linter(allow_single_line=TRUE)) # Perform various style checks related to placement and spacing of curly braces
+  brace_linter(allow_single_line=TRUE), # Perform various style checks related to placement and spacing of curly braces
+  spaces_left_parentheses_linter=NULL) # Check that all left parentheses have a space before them unless they are in a function call
