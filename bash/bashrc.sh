@@ -186,6 +186,11 @@ function transfer {
     echo "#################"
 }
 
+# This function tests whether a variable is readonly
+function is_writable {
+    eval "$1+=" 2> /dev/null
+}
+
 if [[ "$-" =~ "i" ]]; then
     # Ignore case when using tab to autocomplete path
     bind 'set completion-ignore-case on'
@@ -197,10 +202,10 @@ umask 0002
 # Allow ctrl-S for history navigation (with ctrl-R)
 stty -ixon
 # Expand the history size
-export HISTFILESIZE=10000
-export HISTSIZE=500
+is_writable HISTFILESIZE && export HISTFILESIZE=10000
+is_writable HISTSIZE && export HISTSIZE=500
 # Don't put duplicate lines in the history and do not add lines that start with a space
-export HISTCONTROL=erasedups:ignoreboth
+is_writable HISTCONTROL && export HISTCONTROL=erasedups:ignoreboth
 # Append to the history file, don't overwrite it
 shopt -s histappend
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
