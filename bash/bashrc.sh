@@ -165,7 +165,7 @@ function transfer {
     DEST_TYPE=$(df -T $2 | awk 'NR==2' | sed -r 's/ +/ /g' | cut -f2 -d' ')
     if [[ "$DEST_TYPE" =~ ^(cifs|smb)$ ]]; then
         echo "# This is cifs|smb #"
-        ARGS="rlDzv" # Do not preserve permissions, time, groups and owner (-ptgo)
+        ARGS="rDzv" # Do not preserve permissions, time, groups, owner and symlinks (-ptgol)
     else
         ARGS="azv"
     fi
