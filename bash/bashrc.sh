@@ -186,10 +186,12 @@ function transfer {
     echo "#################"
 }
 
-# Ignore case when using tab to autocomplete path
-bind 'set completion-ignore-case on'
-# Show auto-completion list automatically, without double tab
-bind "set show-all-if-ambiguous on"
+if [[ "$-" =~ "i" ]]; then
+  # Ignore case when using tab to autocomplete path
+  bind 'set completion-ignore-case on'
+  # Show auto-completion list automatically, without double tab
+  bind "set show-all-if-ambiguous on"
+fi
 # give same rights to the group and user to everything I create
 umask 0002
 # Allow ctrl-S for history navigation (with ctrl-R)
