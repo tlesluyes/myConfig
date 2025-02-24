@@ -1,6 +1,6 @@
 linters: linters_with_defaults(
+  #assignment_linter = NULL,
   line_length_linter(length=2000L), # Check that the line length of both comments and code is less than length
-  assignment_linter=NULL, # Check that "<-" always used for assignment
   object_name_linter(regexes=c(my_style="^[A-Za-z0-9_\\.]+$")), # Check that object names conform to a naming style
   infix_spaces_linter(exclude_operators=c("+", "-", "~", ">", ">=", "<", "<=", "==", "!=", "&", "&&", "|", "||", "<-", ":=", "<<-", "->", "->>", "=", "/", "*"), allow_multiple_spaces=FALSE), # Check that infix operators are surrounded by spaces
   semicolon_linter(allow_compound=TRUE, allow_trailing=FALSE), # Check that no semicolons terminate expressions
