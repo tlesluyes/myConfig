@@ -186,7 +186,7 @@ function transfer {
     echo "#################"
 }
 
-# This function tests whether a variable is readonly
+# This function tests whether a variable is writable (i.e. not readonly)
 function is_writable {
     eval "$1+=" 2> /dev/null
 }
