@@ -30,7 +30,6 @@ function prompt_command {
         madamete-*)                     myUSER="Madamete" ;;
         hpclogin-*)                     myUSER="HPC" ;;
         C02YP5FZLVDC-*)                 myUSER="Tom" ;;
-        login*.nemo.thecrick.org-*)     myUSER="Nemo" ;;
     esac
     if [ "$SINGULARITY_NAME" != "" ]; then myUSER="$SINGULARITY_NAME"; fi
     # Check the exit code of the last executed command
