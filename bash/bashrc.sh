@@ -218,7 +218,7 @@ alias lsl='ls -lsah'
 alias cd.='cd ../'
 alias less='less -S'
 alias vi='vim'
-alias squeue="squeue -o \"%.10i %.8u %.9P %.8j %.20k %.2t %.12M %.12l %.6m %.3C %.3D %R\""
+alias squeue="squeue -o \"%.10i %.8u %.9P %.20j %.20k %.2t %.12M %.12l %.6m %.3C %.3D %R\""
 alias squ="squeue -u $USER"
 alias sacctm='sacct --units=G --format JobID,JobName%60,Comment%20,Partition,Account,User,AllocCPUS,Elapsed,CPUTime,Timelimit,MaxRSS,ReqMem,NodeList,State,ExitCode'
 # Set PROMPT_COMMAND
