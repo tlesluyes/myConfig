@@ -35,7 +35,7 @@ function prompt_command {
     # Check the exit code of the last executed command
     local ERRMSG=""
     if [ $EXIT_CODE != 0 ]; then
-        ERRMSG="[exit=$EXIT_CODE]"
+        ERRMSG="[$EXIT_CODE]"
     fi
     # Check if the folder is a git repo
     local BRANCH=""
