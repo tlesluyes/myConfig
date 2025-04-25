@@ -31,7 +31,7 @@ function prompt_command {
         hpclogin-*)                     myUSER="HPC" ;;
         C02YP5FZLVDC-*)                 myUSER="Tom" ;;
     esac
-    if [ "$SINGULARITY_NAME" != "" ]; then myUSER="$SINGULARITY_NAME"; fi
+    if [ "$SINGULARITY_NAME" != "" ]; then myUSER="$SINGULARITY_NAME@$myUSER"; fi
     # Check the exit code of the last executed command
     local ERRMSG=""
     if [ $EXIT_CODE != 0 ]; then
