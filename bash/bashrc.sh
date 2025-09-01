@@ -29,7 +29,6 @@ function prompt_command {
         zen-*)                          myUSER="Zen" ;;
         madamete-*)                     myUSER="Madamete" ;;
         hpclogin-*)                     myUSER="HPC" ;;
-        C02YP5FZLVDC-*)                 myUSER="Tom" ;;
     esac
     if [ "$SINGULARITY_NAME" != "" ]; then myUSER="$SINGULARITY_NAME@$myUSER"; fi
     # Check the exit code of the last executed command
@@ -164,20 +163,20 @@ function transfer {
     DEST_TYPE=$(df -T $2 | awk 'NR==2' | sed -r 's/ +/ /g' | cut -f2 -d' ')
     if [[ "$DEST_TYPE" =~ ^(cifs|smb)$ ]]; then
         echo "# This is cifs|smb #"
-        ARGS="rDzv" # Do not preserve permissions, time, groups, owner and symlinks (-ptgol)
+        ARGS="--no-perms --no-times --no-group --no-links"
     else
-        ARGS="azv"
+        ARGS=""
     fi
 
     echo "############################"
     echo "##### Initial transfer #####"
     echo "############################"
-    rsync -$ARGS $1 $2 || return 1
+    rsync -azv $ARGS $1 $2 || return 1
 
     echo "###########################"
     echo "##### Second transfer #####"
     echo "###########################"
-    rsync --remove-source-files -c$ARGS $1 $2 || return 2
+    rsync --remove-source-files -azv -c $ARGS $1 $2 || return 2
     if [[ -d $1 ]]; then find $1 -type d -empty -delete || return 3; fi
 
     echo "#################"
